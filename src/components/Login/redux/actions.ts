@@ -1,12 +1,11 @@
 import { ENDPOINT_API } from '../../../config/environment';
 import { ThunkResult } from '../../../redux';
-import { actionCreator } from '../../../redux/actions';
 
-export const SET_TOKEN = 'SET_TOKEN';
-export const SET_AUTHENTICATED = 'SET_AUTHENTICATED';
+const setTokenAction = (token: string) => <const>{ type: 'SET_TOKEN', token };
+const setAuthenticatedAction = (isAuthenticated: boolean) =>
+  <const>{ type: 'SET_AUTHENTICATED', isAuthenticated };
 
-export const setTokenAction = actionCreator<string>(SET_TOKEN);
-export const setAuthenticated = actionCreator<boolean>(SET_AUTHENTICATED);
+export type ILoginActions = ReturnType<typeof setTokenAction | typeof setAuthenticatedAction>;
 
 export const fetchToken = (username: string, password: string): ThunkResult<Promise<void>> => {
   return async dispatch => {
@@ -21,10 +20,10 @@ export const fetchToken = (username: string, password: string): ThunkResult<Prom
       const data = await response.json();
       const { token } = data;
       dispatch(setTokenAction(token));
-      dispatch(setAuthenticated(true));
+      dispatch(setAuthenticatedAction(true));
     } catch (err) {
       dispatch(setTokenAction(''));
-      dispatch(setAuthenticated(false));
+      dispatch(setAuthenticatedAction(false));
       console.error('Invalid authentication');
       return;
     }

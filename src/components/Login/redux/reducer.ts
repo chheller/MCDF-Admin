@@ -1,18 +1,19 @@
-import { ILoginState } from '.';
-import { IActionWithPayload } from '../../../redux/actions';
-import { SET_AUTHENTICATED, SET_TOKEN } from './actions';
+import { ILoginActions } from './actions';
 
-const initialState: ILoginState = {
+const initialState = {
   token: '',
   isAuthenticated: false
 };
-export default (state: ILoginState = initialState, action: IActionWithPayload): ILoginState => {
+
+export type ILoginState = typeof initialState;
+
+export default (state: ILoginState = initialState, action: ILoginActions): ILoginState => {
   switch (action.type) {
-    case SET_TOKEN:
-      const token = (action as IActionWithPayload<string>).payload;
+    case 'SET_TOKEN':
+      const { token } = action;
       return { ...state, token };
-    case SET_AUTHENTICATED:
-      const isAuthenticated = (action as IActionWithPayload<boolean>).payload;
+    case 'SET_AUTHENTICATED':
+      const { isAuthenticated } = action;
       return { ...state, isAuthenticated };
     default:
       return state;

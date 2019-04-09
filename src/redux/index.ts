@@ -2,10 +2,10 @@ import { applyMiddleware, combineReducers, createStore } from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import thunkMiddleware, { ThunkAction } from 'redux-thunk';
 import { NODE_ENV } from '../config/environment';
-import { IActionWithPayload } from './actions';
 import * as reducers from './reducers';
+import { IRootActions } from './actions';
 
-export type ThunkResult<R> = ThunkAction<R, reducers.IRootState, undefined, IActionWithPayload>;
+export type ThunkResult<R> = ThunkAction<R, reducers.IRootState, undefined, IRootActions>;
 
 const rootReducer = combineReducers(reducers);
 

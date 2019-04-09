@@ -1,4 +1,4 @@
-import { ILoginState, LoginReducer } from '../components/Login/redux';
+import LoginReducer, { ILoginState } from '../components/Login/redux/reducer';
 
 export interface IRootState extends ILoginState {}
 

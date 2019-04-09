@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators, Dispatch } from 'redux';
 import { ThunkResult } from '../../redux';
 import TextInput from '../shared/Inputs/TextInput';
-import { LoginActions } from './redux';
+import * as LoginActions from './redux/actions';
 import { FormContainer, FormContents, InputWrapper, Title } from './styles';
 
 interface IProps {
