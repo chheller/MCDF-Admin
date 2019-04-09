@@ -1,18 +1,12 @@
 import { styled } from 'linaria/react';
 
 export const FormContainer = styled.div`
-  display: flex-inline;
-  align-items: center;
-  justify-content: center;
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
   width: 350px;
-  height: 250px;
+  height: 750px;
+  max-height: calc(100vh - 40px);
+  box-sizing: border-box;
   box-shadow: 5px 8px 5px 5px grey;
-  margin: auto;
+  overflow: auto;
 `;
 
 export const FormContents = styled.div`

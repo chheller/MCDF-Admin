@@ -24,26 +24,24 @@ const LoginForm = ({ fetchToken }: IProps) => {
   };
 
   return (
-    <div>
-      <FormContainer>
-        <Title>MCDF Administrator Login</Title>
-        <FormContents>
-          <InputWrapper>
-            <InputLabel>Username:</InputLabel>
-            <TextInput value={username} onInput={setUsername} />
-          </InputWrapper>
-          <InputWrapper>
-            <InputLabel>Password:</InputLabel>
-            <TextInput value={password} onInput={setPassword} type="password" />
-          </InputWrapper>
-          <InputWrapper>
-            <Button type="submit" onClick={submitLogin}>
-              Login
-            </Button>
-          </InputWrapper>
-        </FormContents>
-      </FormContainer>
-    </div>
+    <FormContainer>
+      <Title>MCDF Administrator Login</Title>
+      <FormContents>
+        <InputWrapper>
+          <InputLabel>Username:</InputLabel>
+          <TextInput value={username} onInput={setUsername} />
+        </InputWrapper>
+        <InputWrapper>
+          <InputLabel>Password:</InputLabel>
+          <TextInput value={password} onInput={setPassword} type="password" />
+        </InputWrapper>
+        <InputWrapper>
+          <Button type="submit" onClick={submitLogin}>
+            Login
+          </Button>
+        </InputWrapper>
+      </FormContents>
+    </FormContainer>
   );
 };
 
