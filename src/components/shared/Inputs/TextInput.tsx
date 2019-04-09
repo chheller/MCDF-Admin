@@ -1,5 +1,5 @@
-import React, { ChangeEvent } from 'react';
 import { Input } from '@material-ui/core';
+import React, { ChangeEvent } from 'react';
 interface IProps {
   onInput(value: string): void;
   value: string;

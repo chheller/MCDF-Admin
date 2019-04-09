@@ -1,12 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
+import 'typeface-roboto';
 import App from './App/App';
 import './index.css';
 import configureStore from './redux';
 import * as serviceWorker from './serviceWorker';
-import 'typeface-roboto';
+
 const store = configureStore();
+
 ReactDOM.render(
   <Provider store={store}>
     <App />

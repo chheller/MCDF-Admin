@@ -1,6 +1,6 @@
+import { ENDPOINT_API } from '../../../config/environment';
 import { ThunkResult } from '../../../redux';
 import { actionCreator } from '../../../redux/actions';
-import { ENDPOINT_API } from '../../../config/environment';
 
 export const SET_TOKEN = 'SET_TOKEN';
 export const SET_AUTHENTICATED = 'SET_AUTHENTICATED';

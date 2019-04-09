@@ -1,11 +1,11 @@
-import React, { useState, StatelessComponent } from 'react';
-import TextInput from '../shared/Inputs/TextInput';
-import { InputLabel, Button } from '@material-ui/core';
-import { FormContainer, Title, FormContents, InputWrapper } from './styles';
+import { Button, InputLabel } from '@material-ui/core';
+import React, { useState } from 'react';
 import { connect } from 'react-redux';
-import * as LoginActions from './redux/actions';
-import { Dispatch, bindActionCreators } from 'redux';
+import { bindActionCreators, Dispatch } from 'redux';
 import { ThunkResult } from '../../redux';
+import TextInput from '../shared/Inputs/TextInput';
+import * as LoginActions from './redux/actions';
+import { FormContainer, FormContents, InputWrapper, Title } from './styles';
 
 interface IProps {
   fetchToken(username: string, password: string): ThunkResult<Promise<void>>;

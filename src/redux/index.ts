@@ -1,9 +1,9 @@
-import thunkMiddleware, { ThunkAction } from 'redux-thunk';
-import { applyMiddleware, compose, createStore, combineReducers, AnyAction, Reducer } from 'redux';
+import { applyMiddleware, combineReducers, createStore } from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
-import * as reducers from './reducers';
+import thunkMiddleware, { ThunkAction } from 'redux-thunk';
 import { NODE_ENV } from '../config/environment';
 import { IActionWithPayload } from './actions';
+import * as reducers from './reducers';
 
 export type ThunkResult<R> = ThunkAction<R, reducers.IRootState, undefined, IActionWithPayload>;
 

@@ -1,7 +1,6 @@
 import { ILoginState } from '.';
-import { Action } from 'redux';
-import { SET_TOKEN, SET_AUTHENTICATED } from './actions';
-import { IActionWithPayload, IAction } from '../../../redux/actions';
+import { IActionWithPayload } from '../../../redux/actions';
+import { SET_AUTHENTICATED, SET_TOKEN } from './actions';
 
 const initialState: ILoginState = {
   token: '',

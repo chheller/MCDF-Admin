@@ -1,8 +1,8 @@
 import React from 'react';
-import logo from '../logo.svg';
-import { AppHeader, AppBody, AppLogo, AppLink } from './styles';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import Login from '../components/Login/Login';
+import logo from '../logo.svg';
+import { AppBody, AppHeader, AppLink, AppLogo } from './styles';
 
 const About = () => {
   return (
