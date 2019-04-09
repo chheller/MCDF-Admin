@@ -1,8 +1,8 @@
-import React from "react";
-import logo from "../logo.svg";
-import { AppHeader, AppBody, AppLogo, AppLink } from "./styles";
-import { BrowserRouter as Router, Route } from "react-router-dom";
-import Login from "../components/Login/Login";
+import React from 'react';
+import logo from '../logo.svg';
+import { AppHeader, AppBody, AppLogo, AppLink } from './styles';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
+import Login from '../components/Login/Login';
 
 const About = () => {
   return (
@@ -12,12 +12,7 @@ const About = () => {
         <p>
           Edit <code>src/App.tsx</code> and save to reload.
         </p>
-        <a
-          className={AppLink}
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
+        <a className={AppLink} href="https://reactjs.org" target="_blank" rel="noopener noreferrer">
           Learn React
         </a>
       </header>

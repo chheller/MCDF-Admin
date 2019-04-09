@@ -1,12 +1,20 @@
-import React from "react";
-import { styled } from "linaria/react";
-const TextInput = ({ onInput }: { onInput: (value: string) => void }) => {
-  const Input = styled.input`
-    border-radius: 5px;
-  `;
+import React, { ChangeEvent } from 'react';
+import { Input } from '@material-ui/core';
+interface IProps {
+  onInput(value: string): void;
+  value: string;
+  type?: string;
+}
+
+const TextInput = ({ onInput, value, type, ...props }: IProps) => {
   return (
     <div>
-      <Input type="text" onChange={event => onInput(event.target.value)} />
+      <Input
+        type={type || 'text'}
+        value={value}
+        onChange={(event: ChangeEvent<HTMLInputElement>) => onInput(event.target.value)}
+        {...props}
+      />
     </div>
   );
 };
