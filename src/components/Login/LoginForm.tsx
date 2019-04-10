@@ -1,18 +1,18 @@
-import { Button, InputLabel } from '@material-ui/core';
-import React, { useState } from 'react';
-import { connect } from 'react-redux';
-import { bindActionCreators, Dispatch } from 'redux';
-import { ThunkResult } from '../../redux';
-import TextInput from '../shared/Inputs/TextInput';
-import * as LoginActions from './redux/actions';
-import { FormContainer, FormContents, InputWrapper, Title } from './styles';
+import { Button, InputLabel } from "@material-ui/core";
+import React, { useState } from "react";
+import { connect } from "react-redux";
+import { bindActionCreators, Dispatch } from "redux";
+import { ThunkResult } from "../../redux";
+import TextInput from "../shared/Inputs/TextInput";
+import * as LoginActions from "./redux/actions";
+import { FormContainer, FormContents, InputWrapper, Title } from "./styles";
 
 interface IProps {
   fetchToken(username: string, password: string): ThunkResult<Promise<void>>;
 }
 const LoginForm = ({ fetchToken }: IProps) => {
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
 
   const validateForm = () => {
     // TODO: Validate username, password

@@ -1,6 +1,10 @@
-import React from 'react';
-import LoginForm from './LoginForm';
-import { css } from 'linaria';
+import React from "react";
+import LoginForm from "./LoginForm";
+import { css } from "linaria";
+import { Location } from "history";
+import { IRootState } from "../../redux/reducers";
+import { connect } from "react-redux";
+import { Redirect } from "react-router";
 
 const wrapper = css`
   height: 100vh;
@@ -11,12 +15,24 @@ const wrapper = css`
   padding: 20px;
   box-sizing: border-box;
 `;
-const Login = () => {
+
+interface IProps {
+  isAuthenticated: boolean;
+  location: Location;
+}
+const Login = ({ location, isAuthenticated }: IProps) => {
+  const { from } = location.state || "/";
   return (
     <div className={wrapper}>
-      <LoginForm />
+      {isAuthenticated ? <Redirect to={from} /> : <LoginForm />}
     </div>
   );
 };
 
-export default Login;
+const mapStateToProps = (state: IRootState): Partial<IProps> => ({
+  isAuthenticated: state.login.isAuthenticated
+});
+export default connect(
+  mapStateToProps,
+  null
+)(Login as any);

@@ -1,20 +1,25 @@
-import { ILoginActions } from './actions';
+import { ILoginActions } from "./actions";
 
 const initialState = {
-  token: '',
+  token: "",
   isAuthenticated: false
 };
 
 export type ILoginState = typeof initialState;
 
-export default (state: ILoginState = initialState, action: ILoginActions): ILoginState => {
+export default (
+  state: ILoginState = initialState,
+  action: ILoginActions
+): ILoginState => {
   switch (action.type) {
-    case 'SET_TOKEN':
+    case "SET_TOKEN":
       const { token } = action;
       return { ...state, token };
-    case 'SET_AUTHENTICATED':
+    case "SET_AUTHENTICATED":
       const { isAuthenticated } = action;
       return { ...state, isAuthenticated };
+    case "LOGOUT":
+      return initialState;
     default:
       return state;
   }

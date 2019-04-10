@@ -1,31 +1,38 @@
-import { ENDPOINT_API } from '../../../config/environment';
-import { ThunkResult } from '../../../redux';
-
-const setTokenAction = (token: string) => <const>{ type: 'SET_TOKEN', token };
+import { ThunkResult } from "../../../redux";
+import axios from "../../../util/axios";
+import { Dispatch } from "redux";
+const setTokenAction = (token: string) => <const>{ type: "SET_TOKEN", token };
 const setAuthenticatedAction = (isAuthenticated: boolean) =>
-  <const>{ type: 'SET_AUTHENTICATED', isAuthenticated };
+  <const>{ type: "SET_AUTHENTICATED", isAuthenticated };
+const logoutAction = () => <const>{ type: "LOGOUT" };
 
-export type ILoginActions = ReturnType<typeof setTokenAction | typeof setAuthenticatedAction>;
+export type ILoginActions = ReturnType<
+  typeof setTokenAction | typeof setAuthenticatedAction | typeof logoutAction
+>;
 
-export const fetchToken = (username: string, password: string): ThunkResult<Promise<void>> => {
+export const fetchToken = (
+  username: string,
+  password: string
+): ThunkResult<Promise<void>> => {
   return async dispatch => {
-    const config = {
-      method: 'POST',
-      body: JSON.stringify({ username, password }),
-      headers: new Headers({ 'Content-Type': 'application/json' })
-    };
     try {
-      const response = await fetch(`${ENDPOINT_API}/authn/login`, config);
-      if (!response.ok) throw response;
-      const data = await response.json();
-      const { token } = data;
+      const response = await axios.post<{ token: string }>("/authn/login", {
+        username,
+        password
+      });
+      const { token } = response.data;
       dispatch(setTokenAction(token));
       dispatch(setAuthenticatedAction(true));
     } catch (err) {
-      dispatch(setTokenAction(''));
-      dispatch(setAuthenticatedAction(false));
-      console.error('Invalid authentication');
+      dispatch(logoutAction());
+      console.error("Invalid authentication");
       return;
     }
+  };
+};
+
+export const logout = () => {
+  return (dispatch: Dispatch) => {
+    dispatch(logoutAction());
   };
 };

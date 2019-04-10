@@ -1,5 +1,7 @@
-import LoginReducer, { ILoginState } from '../components/Login/redux/reducer';
+import login, { ILoginState } from "../components/Login/redux/reducer";
 
-export interface IRootState extends ILoginState {}
+export interface IRootState {
+  login: ILoginState;
+}
 
-export { LoginReducer };
+export default { login };
