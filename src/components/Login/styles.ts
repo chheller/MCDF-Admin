@@ -2,7 +2,7 @@ import { styled } from 'linaria/react';
 
 export const FormContainer = styled.div`
   width: 350px;
-  height: 750px;
+  height: 250px;
   max-height: calc(100vh - 40px);
   box-sizing: border-box;
   box-shadow: 5px 8px 5px 5px grey;
