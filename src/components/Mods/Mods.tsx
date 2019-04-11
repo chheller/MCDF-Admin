@@ -3,13 +3,14 @@ import ModsSelectView from "./ModsSelectView";
 import { bindActionCreators, Dispatch } from "redux";
 import { IRootState } from "../../redux/reducers";
 import { connect } from "react-redux";
+import { ModsWrapper } from "./styles";
 
 const Mods = () => {
   return (
-    <div>
-      <ModsSelectView />
-      <ModsSelectView />
-    </div>
+    <ModsWrapper>
+      <ModsSelectView mods={[]} />
+      <ModsSelectView mods={[]} />
+    </ModsWrapper>
   );
 };
 

@@ -8,14 +8,13 @@ import { logout } from "../components/Login/redux/actions";
 
 const axiosConfig: AxiosRequestConfig = {
   baseURL: ENDPOINT_API,
-  timeout: 5000,
-  headers: {}
+  timeout: 5000
 };
 
 const createAxiosInstance = (store: Store) => {
   const axiosInstance = axios.create(axiosConfig);
   const { dispatch, subscribe, getState } = store;
-
+  axios.defaults.withCredentials = true;
   subscribe(() => {
     axiosInstance.defaults.headers.common[
       "Authorization"

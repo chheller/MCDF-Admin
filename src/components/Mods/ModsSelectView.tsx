@@ -6,27 +6,20 @@ import { Dispatch, bindActionCreators } from "redux";
 import { css } from "linaria";
 import axios from "../../util/axios";
 
-const container = css`
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translateX(-50%) translateY(-50%);
-`;
-const ModsSelectView = () => {
+interface IProps {
+  mods: string[];
+}
+
+const ModsSelectView = ({ mods }: IProps) => {
   const testAuthn = () => {
     axios.post("/authn/unauthn");
   };
   return (
     <div>
-      <div className={container}>
+      <div>
         <div>Mods be Here!</div>
-        <button
-          onClick={() => {
-            testAuthn();
-          }}
-        >
-          Test Auth
-        </button>
+        <ul>{}</ul>
+        <button onClick={() => testAuthn()}> TEST AUTH</button>
       </div>
     </div>
   );

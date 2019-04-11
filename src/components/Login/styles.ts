@@ -1,4 +1,14 @@
-import { styled } from 'linaria/react';
+import { styled } from "linaria/react";
+
+export const LoginFormWrapper = styled.div`
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  box-sizing: border-box;
+`;
 
 export const FormContainer = styled.div`
   width: 350px;
