@@ -17,16 +17,15 @@ interface IProps {
 const Login = ({ location, isAuthenticated, login }: IProps) => {
   const { from } = location.state || "/";
 
-  const fetchToken = async () => {
+  const fetchClaimToken = async () => {
     const response = await axios.post<string>("/authn/refresh");
-    console.log(response);
-
     login(response.data);
   };
 
   useEffect(() => {
-    fetchToken();
+    fetchClaimToken();
   }, []);
+
   return (
     <LoginFormWrapper>
       {isAuthenticated ? <Redirect to={from} /> : <LoginForm />}
