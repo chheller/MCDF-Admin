@@ -1,11 +1,11 @@
 import React, { useEffect } from 'react';
 import ModsSelectView from './ModsSelectView';
 import { bindActionCreators, Dispatch } from 'redux';
-import { IRootState } from '../../redux/reducers';
+import { IRootState } from '../../../redux/reducers';
 import { connect } from 'react-redux';
 import { ModsWrapper } from './styles';
-import { ModData } from './types';
-import { fetchMods } from './data/redux/actions';
+import { ModData } from '../types';
+import { fetchMods } from '../data/redux/actions';
 
 interface OwnProps {
   mods: ModData[];

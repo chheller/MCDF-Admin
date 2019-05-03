@@ -1,9 +1,9 @@
 import React from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
-import Login from '../components/Login/Login';
+import Login from '../components/Login/ui/Login';
 import logo from '../logo.svg';
 import { AppBody, AppHeader, AppLink, AppLogo } from './styles';
-import Mods from '../components/Mods/Mods';
+import Mods from '../components/Mods/ui/Mods';
 import PrivateRoute from '../components/_shared/Router/PrivateRoute';
 
 const About = () => {

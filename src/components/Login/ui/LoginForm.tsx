@@ -2,9 +2,9 @@ import { Button, InputLabel } from '@material-ui/core';
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators, Dispatch } from 'redux';
-import { ThunkResult } from '../../redux';
-import TextInput from '../_shared/Inputs/TextInput';
-import { login } from './data/redux/actions';
+import { ThunkResult } from '../../../redux';
+import TextInput from '../../_shared/Inputs/TextInput';
+import { login } from '../data/redux/actions';
 import { FormContainer, FormContents, InputWrapper, Title } from './styles';
 
 interface OwnProps {}

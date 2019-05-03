@@ -1,12 +1,12 @@
 import React, { useEffect } from 'react';
 import LoginForm from './LoginForm';
 import { Location } from 'history';
-import { IRootState } from '../../redux/reducers';
+import { IRootState } from '../../../redux/reducers';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router';
 import { LoginFormWrapper } from './styles';
 import { bindActionCreators, Dispatch } from 'redux';
-import { refreshAuthentication } from './data/redux/actions';
+import { refreshAuthentication } from '../data/redux/actions';
 
 interface IProps {
   isAuthenticated: boolean;

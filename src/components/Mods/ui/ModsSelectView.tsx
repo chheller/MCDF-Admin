@@ -1,10 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import { IRootState } from '../../redux/reducers';
+import { IRootState } from '../../../redux/reducers';
 import { Dispatch, bindActionCreators } from 'redux';
 import { css } from 'linaria';
-import { ModData } from './types';
+import { ModData } from '../types';
 
 interface OwnProps {
   mods: ModData[];
