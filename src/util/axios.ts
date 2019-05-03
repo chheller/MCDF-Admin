@@ -1,27 +1,28 @@
-import axios, { AxiosRequestConfig, AxiosResponse } from "axios";
-import { ENDPOINT_API } from "../config/environment";
-import { Store } from "redux";
-import { store } from "../redux";
-
-import { IRootState } from "../redux/reducers";
-import { logout } from "../components/Login/redux/actions";
+import axios, { AxiosRequestConfig, AxiosResponse, AxiosInstance } from 'axios';
+import { ENDPOINT_API } from '../config/environment';
+import { Store } from 'redux';
+import { IRootState } from '../redux/reducers';
+import { logout } from '../components/Login/data/redux/actions';
 
 const axiosConfig: AxiosRequestConfig = {
   baseURL: ENDPOINT_API,
   timeout: 5000
 };
 
-const createAxiosInstance = (store: Store) => {
+export const createAxiosInstance = () => {
   const axiosInstance = axios.create(axiosConfig);
+
+  return axiosInstance;
+};
+
+export const configureAxiosInstance = (instance: AxiosInstance, store: Store) => {
   const { dispatch, subscribe, getState } = store;
   axios.defaults.withCredentials = true;
   subscribe(() => {
-    axiosInstance.defaults.headers.common[
-      "Authorization"
-    ] = (getState() as IRootState).login.token;
+    instance.defaults.headers.common['Authorization'] = (getState() as IRootState).login.token;
   });
 
-  axiosInstance.interceptors.response.use(
+  instance.interceptors.response.use(
     (response: AxiosResponse) => response,
     error => {
       const { status } = <AxiosResponse>error.response;
@@ -31,8 +32,4 @@ const createAxiosInstance = (store: Store) => {
       return Promise.reject(error);
     }
   );
-
-  return axiosInstance;
 };
-
-export default createAxiosInstance(store);

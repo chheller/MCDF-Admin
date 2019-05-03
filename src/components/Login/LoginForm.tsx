@@ -1,18 +1,21 @@
-import { Button, InputLabel } from "@material-ui/core";
-import React, { useState } from "react";
-import { connect } from "react-redux";
-import { bindActionCreators, Dispatch } from "redux";
-import { ThunkResult } from "../../redux";
-import TextInput from "../shared/Inputs/TextInput";
-import * as LoginActions from "./redux/actions";
-import { FormContainer, FormContents, InputWrapper, Title } from "./styles";
+import { Button, InputLabel } from '@material-ui/core';
+import React, { useState } from 'react';
+import { connect } from 'react-redux';
+import { bindActionCreators, Dispatch } from 'redux';
+import { ThunkResult } from '../../redux';
+import TextInput from '../_shared/Inputs/TextInput';
+import { login } from './data/redux/actions';
+import { FormContainer, FormContents, InputWrapper, Title } from './styles';
 
-interface IProps {
-  fetchToken(username: string, password: string): ThunkResult<Promise<void>>;
+interface OwnProps {}
+interface DispatchProps {
+  login(username: string, password: string): ThunkResult<Promise<void>>;
 }
-const LoginForm = ({ fetchToken }: IProps) => {
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
+
+type Props = OwnProps & DispatchProps;
+const LoginForm = ({ login }: Props) => {
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
 
   const validateForm = () => {
     // TODO: Validate username, password
@@ -20,7 +23,7 @@ const LoginForm = ({ fetchToken }: IProps) => {
   };
 
   const submitLogin = () => {
-    fetchToken(username, password);
+    login(username, password);
   };
 
   return (
@@ -45,10 +48,10 @@ const LoginForm = ({ fetchToken }: IProps) => {
   );
 };
 
-const mapDispatchToProps = (dispatch: Dispatch): Partial<IProps> => {
-  return bindActionCreators({ ...(LoginActions as any) }, dispatch);
+const mapDispatchToProps = (dispatch: Dispatch): DispatchProps => {
+  return bindActionCreators({ login }, dispatch);
 };
-export default connect(
+export default connect<Props, DispatchProps, OwnProps>(
   null,
   mapDispatchToProps
 )(LoginForm as any);

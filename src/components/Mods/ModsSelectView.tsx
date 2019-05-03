@@ -1,25 +1,33 @@
-import React from "react";
-import { connect } from "react-redux";
+import React from 'react';
+import { connect } from 'react-redux';
 
-import { IRootState } from "../../redux/reducers";
-import { Dispatch, bindActionCreators } from "redux";
-import { css } from "linaria";
-import axios from "../../util/axios";
+import { IRootState } from '../../redux/reducers';
+import { Dispatch, bindActionCreators } from 'redux';
+import { css } from 'linaria';
+import { ModData } from './types';
 
-interface IProps {
-  mods: string[];
+interface OwnProps {
+  mods: ModData[];
 }
 
-const ModsSelectView = ({ mods }: IProps) => {
-  const testAuthn = () => {
-    axios.post("/authn/unauthn");
+interface OwnState {}
+
+interface ReduxProps {}
+
+interface DispatchProps {}
+
+type Props = OwnProps & ReduxProps & DispatchProps;
+
+const ModsSelectView = ({ mods }: Props) => {
+  const renderMod = (mod: ModData) => {
+    return <li>{mod.name}</li>;
   };
+
   return (
     <div>
       <div>
         <div>Mods be Here!</div>
-        <ul>{}</ul>
-        <button onClick={() => testAuthn()}> TEST AUTH</button>
+        <ul>{mods.map(renderMod)}</ul>
       </div>
     </div>
   );
