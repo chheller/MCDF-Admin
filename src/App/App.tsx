@@ -3,8 +3,9 @@ import { BrowserRouter as Router, Route } from 'react-router-dom';
 import Login from '../components/Login/ui/Login';
 import logo from '../logo.svg';
 import { AppBody, AppHeader, AppLink, AppLogo } from './styles';
-import Mods from '../components/Mods/ui/Mods';
+import Mods from '../components/AdminPanel/ui/Mods';
 import PrivateRoute from '../components/_shared/Router/PrivateRoute';
+import { AdministrationPage } from '../components/AdminPanel/ui/AdminPage';
 
 const About = () => {
   return (
@@ -28,7 +29,7 @@ const App = () => {
       <div>
         <Route exact path="/" component={About} />
         <Route path="/login" component={Login} />
-        <PrivateRoute path="/mods" component={Mods} />
+        <PrivateRoute path="/admin" component={AdministrationPage} />
       </div>
     </Router>
   );

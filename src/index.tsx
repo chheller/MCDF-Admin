@@ -16,22 +16,29 @@ import {
   LiveAuthenticateGateway,
   LocalAuthenticateGateway
 } from './components/Login/data/authenticate-gateway';
-import { ModsApi, LiveModsApi, LocalModsApi } from './components/Mods/data/api';
-import { LiveModsGateway, LocalModsGateway } from './components/Mods/data/mods-gateway';
+import {
+  AdministrationApi,
+  LiveAdministrationApi,
+  LocalAdministrationApi
+} from './components/AdminPanel/data/api';
+import {
+  LiveAdministrationGateway,
+  LocalAdministrationGateway
+} from './components/AdminPanel/data/mods-gateway';
 
 export interface Services {
   login: LoginApi;
-  mods: ModsApi;
+  mods: AdministrationApi;
 }
 const configureServices = (axios: AxiosInstance): Services => {
   return NODE_ENV === 'production'
     ? {
         login: new LiveLoginApi(new LiveLoginGateway(axios), new LiveAuthenticateGateway(axios)),
-        mods: new LiveModsApi(new LiveModsGateway(axios))
+        mods: new LiveAdministrationApi(new LiveAdministrationGateway(axios))
       }
     : {
         login: new LocalLoginApi(new LocalLoginGateway(axios), new LocalAuthenticateGateway(axios)),
-        mods: new LocalModsApi(new LocalModsGateway(axios))
+        mods: new LocalAdministrationApi(new LocalAdministrationGateway(axios))
       };
 };
 

@@ -1,8 +1,8 @@
-import { IRepository } from '../../../_shared/interfaces';
+import { Repository } from '../../../_shared/interfaces';
 import { AuthenticateStruct } from './interface';
 import { AxiosInstance } from 'axios';
 
-export class LiveAuthenticateGateway implements IRepository<void, string> {
+export class LiveAuthenticateGateway implements Repository<void, string> {
   constructor(private api: AxiosInstance) {}
 
   public async find(): Promise<string> {
@@ -11,7 +11,7 @@ export class LiveAuthenticateGateway implements IRepository<void, string> {
   }
 }
 
-export class LocalAuthenticateGateway implements IRepository<AuthenticateStruct, string> {
+export class LocalAuthenticateGateway implements Repository<AuthenticateStruct, string> {
   constructor(private api: AxiosInstance) {}
   public async find(): Promise<string> {
     return Promise.resolve('Auth_token');

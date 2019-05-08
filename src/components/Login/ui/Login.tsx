@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import LoginForm from './LoginForm';
 import { Location } from 'history';
-import { IRootState } from '../../../redux/reducers';
+import { RootReduxState } from '../../../redux/reducers';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router';
 import { LoginFormWrapper } from './styles';
@@ -24,7 +24,7 @@ const Login = ({ location, isAuthenticated, refreshAuthentication }: IProps) => 
   );
 };
 
-const mapStateToProps = (state: IRootState): Partial<IProps> => ({
+const mapStateToProps = (state: RootReduxState): Partial<IProps> => ({
   isAuthenticated: state.login.isAuthenticated
 });
 
