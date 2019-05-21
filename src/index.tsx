@@ -1,37 +1,50 @@
+import { AxiosInstance } from 'axios';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
+import { Store } from 'redux';
 import 'typeface-roboto';
 import App from './App/App';
-import './index.css';
-import configureStore from './redux';
-import * as serviceWorker from './serviceWorker';
-import { LoginApi, LiveLoginApi, LocalLoginApi } from './components/Login/data/api';
-import { NODE_ENV } from './config/environment';
-import { LiveLoginGateway, LocalLoginGateway } from './components/Login/data/login-gateway';
-import { createAxiosInstance, configureAxiosInstance } from './util/axios';
-import { AxiosInstance } from 'axios';
-import { Store } from 'redux';
+import {
+  LiveAdministrationGateway,
+  LocalAdministrationGateway
+} from './components/AdminPanel/data/admin-gateway';
+import {
+  AdministrationApi,
+  LiveAdministrationApi,
+  LocalAdministrationApi
+} from './components/AdminPanel/data/api';
+import { LiveModsGateway, LocalModsGateway } from './components/AdminPanel/data/mods-gateway';
+import { LiveLoginApi, LocalLoginApi, LoginApi } from './components/Login/data/api';
 import {
   LiveAuthenticateGateway,
   LocalAuthenticateGateway
 } from './components/Login/data/authenticate-gateway';
-import { ModsApi, LiveModsApi, LocalModsApi } from './components/Mods/data/api';
-import { LiveModsGateway, LocalModsGateway } from './components/Mods/data/mods-gateway';
+import { NODE_ENV } from './config/environment';
+import './index.css';
+import configureStore from './redux';
+import * as serviceWorker from './serviceWorker';
+import { configureAxiosInstance, createAxiosInstance } from './util/axios';
 
 export interface Services {
   login: LoginApi;
-  mods: ModsApi;
+  admin: AdministrationApi;
 }
 const configureServices = (axios: AxiosInstance): Services => {
   return NODE_ENV === 'production'
     ? {
-        login: new LiveLoginApi(new LiveLoginGateway(axios), new LiveAuthenticateGateway(axios)),
-        mods: new LiveModsApi(new LiveModsGateway(axios))
+        login: new LiveLoginApi(new LiveAuthenticateGateway(axios)),
+        admin: new LiveAdministrationApi(
+          new LiveModsGateway(axios),
+          new LiveAdministrationGateway(axios)
+        )
       }
     : {
-        login: new LocalLoginApi(new LocalLoginGateway(axios), new LocalAuthenticateGateway(axios)),
-        mods: new LocalModsApi(new LocalModsGateway(axios))
+        login: new LocalLoginApi(new LocalAuthenticateGateway(axios)),
+        admin: new LocalAdministrationApi(
+          new LocalModsGateway(axios),
+          new LocalAdministrationGateway(axios)
+        )
       };
 };
 

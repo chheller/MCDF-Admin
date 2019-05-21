@@ -2,10 +2,10 @@ import { applyMiddleware, combineReducers, createStore } from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import thunkMiddleware, { ThunkAction } from 'redux-thunk';
 import { NODE_ENV } from '../config/environment';
-import RootState, { IRootState, initialState } from './reducers';
+import RootState, { RootReduxState, initialState } from './reducers';
 import { IRootActions } from './actions';
 import { Services } from '..';
-export type ThunkResult<R> = ThunkAction<R, IRootState, ThunkArguments, IRootActions>;
+export type ThunkResult<R> = ThunkAction<R, RootReduxState, ThunkArguments, IRootActions>;
 
 const rootReducer = combineReducers(RootState);
 
@@ -13,7 +13,10 @@ export type ThunkArguments = {
   services: Services;
 };
 
-const configureStore = (extraArguments: ThunkArguments, rootState: IRootState = initialState) => {
+const configureStore = (
+  extraArguments: ThunkArguments,
+  rootState: RootReduxState = initialState
+) => {
   const middlewares = [thunkMiddleware.withExtraArgument({ ...extraArguments })];
   const middlewareEnhancers = applyMiddleware(...middlewares);
   const enhancers = [middlewareEnhancers];

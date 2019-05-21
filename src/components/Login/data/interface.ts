@@ -1,17 +1,20 @@
-import { IRepository } from '../../../_shared/interfaces';
-
 export interface AuthenticateStruct {
   username: string;
   password: string;
 }
 
+export interface AuthenticationService {
+  refresh: () => Promise<string>;
+  authenticate: (details: AuthenticateStruct) => Promise<string>;
+}
+
 export const authenticate = async (
-  details: AuthenticateStruct,
-  loginService: IRepository<AuthenticateStruct, string>
+  authenticateService: AuthenticationService,
+  details: AuthenticateStruct
 ): Promise<string> => {
-  return await loginService.find(details);
+  return await authenticateService.authenticate(details);
 };
 
-export const refresh = async (authenticateService: IRepository<void, string>): Promise<string> => {
-  return await authenticateService.find();
+export const refresh = async (authenticateService: AuthenticationService): Promise<string> => {
+  return await authenticateService.refresh();
 };

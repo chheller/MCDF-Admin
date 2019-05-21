@@ -1,16 +1,12 @@
-import login, {
-  initialState as loginState,
-  LoginState
-} from '../components/Login/data/redux/reducer';
+import login, { initialState as loginState } from '../components/Login/data/redux/reducer';
 
-import mods, { initialState as modState, ModsState } from '../components/Mods/data/redux/reducer';
-export interface IRootState {
-  login: LoginState;
-  mods: ModsState;
-}
-export const initialState: IRootState = {
+import admin, { initialState as modState } from '../components/AdminPanel/data/reducer';
+
+export const initialState = {
   login: loginState,
-  mods: modState
+  admin: modState
 };
 
-export default { login, mods };
+export type RootReduxState = typeof initialState;
+
+export default { login, admin };

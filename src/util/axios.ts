@@ -1,7 +1,7 @@
 import axios, { AxiosRequestConfig, AxiosResponse, AxiosInstance } from 'axios';
 import { ENDPOINT_API } from '../config/environment';
 import { Store } from 'redux';
-import { IRootState } from '../redux/reducers';
+import { RootReduxState } from '../redux/reducers';
 import { logout } from '../components/Login/data/redux/actions';
 
 const axiosConfig: AxiosRequestConfig = {
@@ -19,7 +19,7 @@ export const configureAxiosInstance = (instance: AxiosInstance, store: Store) =>
   const { dispatch, subscribe, getState } = store;
   axios.defaults.withCredentials = true;
   subscribe(() => {
-    instance.defaults.headers.common['Authorization'] = (getState() as IRootState).login.token;
+    instance.defaults.headers.common['Authorization'] = (getState() as RootReduxState).login.token;
   });
 
   instance.interceptors.response.use(
