@@ -1,4 +1,4 @@
-import { ModData } from '../types';
+import { ModData, ServerStatus } from '../types';
 import { LiveAdministrationGateway, LocalAdministrationGateway } from './admin-gateway';
 import { LiveModsGateway, LocalModsGateway } from './mods-gateway';
 import { fetchMods, disableMod, enableMod, fetchMod } from './interface';
@@ -9,6 +9,7 @@ export interface AdministrationApi {
   restartServer: () => Promise<void>;
   disableMod: (mod: ModData) => Promise<boolean>;
   enableMod: (mod: ModData) => Promise<boolean>;
+  getServerStatus: () => Promise<ServerStatus>;
 }
 
 export class LiveAdministrationApi implements AdministrationApi {
@@ -31,6 +32,9 @@ export class LiveAdministrationApi implements AdministrationApi {
   public async restartServer() {
     return await this.adminGateway.restart();
   }
+  public async getServerStatus() {
+    return await this.adminGateway.getServerStatus();
+  }
 }
 
 export class LocalAdministrationApi implements AdministrationApi {
@@ -52,5 +56,8 @@ export class LocalAdministrationApi implements AdministrationApi {
   }
   public async restartServer() {
     return await this.adminGateway.restart();
+  }
+  public async getServerStatus() {
+    return await this.adminGateway.getServerStatus();
   }
 }

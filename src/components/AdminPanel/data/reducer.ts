@@ -1,9 +1,10 @@
 import { IModsActions } from './actions';
-import { ModData } from '../types';
+import { ModData, ServerStatus } from '../types';
 
 export const initialState = {
   mods: <ModData[]>[],
-  stagedMods: <ModData[]>[]
+  stagedMods: <ModData[]>[],
+  serverStatus: ServerStatus.unknown
 };
 
 export type AdminState = typeof initialState;
@@ -20,6 +21,10 @@ export default (state = initialState, action: IModsActions) => {
     case 'UNSTAGE_MOD': {
       const stagedMods = [...state.stagedMods].filter(stagedMod => stagedMod !== action.mod);
       return { ...state, stagedMods };
+    }
+    case 'SET_SERVER_STATUS': {
+      const { serverStatus } = action;
+      return { ...state, serverStatus };
     }
     default:
       return state;

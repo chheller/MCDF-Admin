@@ -1,26 +1,26 @@
-import { AxiosInstance, AxiosResponse } from 'axios';
+import { AxiosInstance } from 'axios';
 import { ModData } from '../types';
-import { testData } from './mods-dummy-data';
 import { ModsService } from './interface';
+import { testData } from './mods-dummy-data';
 
 export class LiveModsGateway implements ModsService {
   constructor(private api: AxiosInstance) {}
 
   public async fetchAll() {
-    const response = await this.api.get<ModData[]>('/mods');
+    const response = await this.api.get<ModData[]>('/administration/server/mods');
     return response.data;
   }
   public async fetch(mod: ModData) {
-    const response = await this.api.get<ModData>(`/mods/${mod.modid}`);
+    const response = await this.api.get<ModData>(`/administration/server/mods/${mod.modid}`);
     return response.data;
   }
 
   public async disable(mod: ModData) {
-    const response = await this.api.post<boolean>(`/mods/disable`, mod);
+    const response = await this.api.post<boolean>(`/administration/server/mods/disable`, mod);
     return !!response.data;
   }
   public async enable(mod: ModData) {
-    const response = await this.api.post<boolean>(`/mods/enable`, mod);
+    const response = await this.api.post<boolean>(`/administration/server/mods/enable`, mod);
     return !!response.data;
   }
 }

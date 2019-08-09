@@ -8,3 +8,10 @@ export type ModData = {
   path: string;
   enabled: boolean;
 };
+
+export enum ServerStatus {
+  online = 'ONLINE',
+  offline = 'OFFLINE',
+  restarting = 'RESTARTING',
+  unknown = 'UNKNOWN'
+}

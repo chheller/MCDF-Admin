@@ -5,7 +5,7 @@ import { bindActionCreators, Dispatch } from 'redux';
 import { ThunkResult } from '../../../redux';
 import TextInput from '../../_shared/Inputs/TextInput';
 import { login } from '../data/redux/actions';
-import { FormContainer, FormContents, InputWrapper, Title } from './styles';
+const styles = require('./styles.css');
 
 interface OwnProps {}
 interface DispatchProps {
@@ -27,24 +27,24 @@ const LoginForm = ({ login }: Props) => {
   };
 
   return (
-    <FormContainer>
-      <Title>MCDF Administrator Login</Title>
-      <FormContents>
-        <InputWrapper>
+    <div className={styles.formContainer}>
+      <h3 className={styles.title}>MCDF Administrator Login</h3>
+      <div className={styles.formContent}>
+        <div className={styles.inputWrapper}>
           <InputLabel>Username:</InputLabel>
           <TextInput value={username} onInput={setUsername} />
-        </InputWrapper>
-        <InputWrapper>
+        </div>
+        <div>
           <InputLabel>Password:</InputLabel>
           <TextInput value={password} onInput={setPassword} type="password" />
-        </InputWrapper>
-        <InputWrapper>
+        </div>
+        <div className={styles.inputWrapper}>
           <Button type="submit" onClick={submitLogin}>
             Login
           </Button>
-        </InputWrapper>
-      </FormContents>
-    </FormContainer>
+        </div>
+      </div>
+    </div>
   );
 };
 

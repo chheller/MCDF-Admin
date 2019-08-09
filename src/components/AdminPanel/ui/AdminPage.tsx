@@ -4,27 +4,20 @@ import { Drawer, List, ListItem, ListItemIcon, ListItemText } from '@material-ui
 import { Settings, CloudUpload, SwapHoriz } from '@material-ui/icons';
 import { makeStyles } from '@material-ui/styles';
 import ManageServer from './ManageServer';
+
 export const AdministrationPage = () => {
   const [manageServerOpen, setManageServerOpen] = React.useState(true);
-  const [modsOpen, setModsOpen] = React.useState(false);
   const [uploadModsOpen, setUploadModsOpen] = React.useState(false);
 
-  const showPage = (page: 'Manage Server' | 'Configure Mods' | 'Upload Mods') => {
+  const showPage = (page: 'Manage Server' | 'Upload Mods') => {
     switch (page) {
-      case 'Configure Mods':
-        setModsOpen(true);
-        setManageServerOpen(false);
-        setUploadModsOpen(false);
-        break;
       case 'Upload Mods':
         setUploadModsOpen(true);
         setManageServerOpen(false);
-        setModsOpen(false);
         break;
       case 'Manage Server':
       default:
         setManageServerOpen(true);
-        setModsOpen(false);
         setUploadModsOpen(false);
         break;
     }
@@ -33,7 +26,9 @@ export const AdministrationPage = () => {
   const styles = {
     content: {
       flexGrow: 1,
-      paddingLeft: 20
+      paddingLeft: 20,
+      overflow: 'auto',
+      maxHeight: '100vh'
     },
     root: {
       display: 'flex'
@@ -43,15 +38,12 @@ export const AdministrationPage = () => {
     }
   };
   const classes = makeStyles(styles)();
+
   const renderDrawerList = () =>
     [
       {
         text: 'Manage Server',
         icon: <Settings />
-      } as const,
-      {
-        text: 'Configure Mods',
-        icon: <SwapHoriz />
       } as const,
       {
         text: 'Upload Mods',
@@ -72,7 +64,6 @@ export const AdministrationPage = () => {
 
       <main className={classes.content}>
         {manageServerOpen && <ManageServer />}
-        {modsOpen && <Mods />}
         {uploadModsOpen && <div>Coming Soon!</div>}
       </main>
     </div>

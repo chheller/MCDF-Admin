@@ -1,0 +1,100 @@
+.card {
+  display: flex;
+  margin: 15px 15px;
+}
+.modsWrapper {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  /* justify-content: space-evenly;
+  align-items: space-evenly; */
+  padding: 0px 0px !important;
+}
+
+.modTitle {
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  text-overflow: ellipsis;
+  display: -webkit-box !important;
+  overflow: hidden;
+  margin: 0px 0px;
+}
+.modDescription {
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  text-overflow: ellipsis;
+  display: -webkit-box !important;
+  overflow: hidden;
+  max-width: 95%;
+  text-overflow: ellipsis;
+  text-align: left;
+}
+.modContainer {
+  width: 80%;
+}
+
+.modAction {
+  padding-right: 15px;
+}
+.modImage {
+  height: 86px;
+  width: 250px;
+  min-width: 250px;
+  object-fit: contain;
+  align-self: flex-start;
+  box-shadow: 3px 3px 5px 5px #ccc;
+}
+.modText {
+  margin: 0px 15px;
+}
+.formWrapper {
+  height: 100%;
+  width: 80%;
+  margin: auto;
+  display: flex;
+}
+
+.statusContainer {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  border-radius: 24px;
+  border: 2px solid gray;
+  padding: 5px;
+}
+
+.statusIcon {
+  padding: 5px 5px;
+}
+.serverStatus {
+  border-radius: 24px;
+  border: 2px solid gray;
+  width: 86px;
+  min-width: 86px;
+  height: 32px;
+  text-align: center;
+  line-height: 32px;
+  margin: 5px;
+  color: #feeeee;
+  font-weight: bold;
+
+  &.online {
+    background-color: lightgreen;
+    border-color: darkgreen;
+  }
+
+  &.restarting {
+    background-color: l;
+    border-color: darkgreen;
+  }
+
+  &.offline {
+    background-color: lightgreen;
+    border-color: darkgreen;
+  }
+
+  &.unknown {
+    background-color: lightgreen;
+    border-color: darkgreen;
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "folders": [
+	{
+		"path": "/Users/Work/Desktop/projects/MCDF/services/MCDF-API"
+	},
+	{
+		"path": "/Users/Work/Desktop/projects/MCDF/services/MCDF-Admin"
+	}
+],
+  "settings": {
+    "typescript.tsdk": "MCDF-API/node_modules/typescript/lib"
+  }
+}

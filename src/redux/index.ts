@@ -4,7 +4,7 @@ import thunkMiddleware, { ThunkAction } from 'redux-thunk';
 import { NODE_ENV } from '../config/environment';
 import RootState, { RootReduxState, initialState } from './reducers';
 import { IRootActions } from './actions';
-import { Services } from '..';
+import { Services } from '../registerServices';
 export type ThunkResult<R> = ThunkAction<R, RootReduxState, ThunkArguments, IRootActions>;
 
 const rootReducer = combineReducers(RootState);
